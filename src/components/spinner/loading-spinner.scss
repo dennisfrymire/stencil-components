@@ -1,0 +1,86 @@
+
+svg {
+    animation: 2.0s linear ease infinite svg-animation;
+    max-width: 100px;
+  }
+  
+  .spin_circle {
+    display: block;
+    fill: transparent;
+    stroke-linecap: none;
+    stroke-dashoffset: 90;
+    stroke-width: 8px;
+    transform-origin: 50% 50%;
+  }
+  
+  .outer {
+    animation: 2.0s linear infinite outer-circle-animation;
+    stroke: #383838;
+    stroke-dasharray: 230;
+  }
+  
+  .middle {
+    animation: 2.0s linear infinite middle-circle-animation;
+    stroke: #004f96;
+    stroke-dasharray: 183.5;
+  }
+  
+  .inner {
+    animation: 2.0s linear infinite inner-circle-animation;
+    stroke: #00c4ff;
+    stroke-dasharray: 137;
+  }
+  
+  @keyframes inner-circle-animation {
+    0% {
+      transform: rotate(0deg);
+    }
+    10% {
+      transform: rotate(0deg);
+    }
+    
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes middle-circle-animation {
+    0% {
+      transform: rotate(0deg);
+    }
+    5% {
+      transform: rotate(0deg);
+    }
+    
+    95% {
+      transform: rotate(360deg);
+    }
+  
+    100% {
+      transform: rotate(360deg);
+    }
+    
+  }
+  
+  @keyframes outer-circle-animation {
+    0% {
+      transform: rotate(0deg);
+    }
+    90% {
+      transform: rotate(360deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  
+  
+  @keyframes svg-animation {
+    0% {
+      transform: rotateZ(45deg);
+    }
+    100% {
+      transform: rotateZ(90deg)
+    }
+  }

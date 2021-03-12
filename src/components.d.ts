@@ -14,6 +14,15 @@ export namespace Components {
     }
     interface AppRoot {
     }
+    interface LoadingSpinner {
+    }
+    interface MyBackdrop {
+    }
+    interface MyModal {
+        "content": string;
+        "head": string;
+        "open": () => Promise<void>;
+    }
 }
 declare global {
     interface HTMLAppHomeElement extends Components.AppHome, HTMLStencilElement {
@@ -34,10 +43,31 @@ declare global {
         prototype: HTMLAppRootElement;
         new (): HTMLAppRootElement;
     };
+    interface HTMLLoadingSpinnerElement extends Components.LoadingSpinner, HTMLStencilElement {
+    }
+    var HTMLLoadingSpinnerElement: {
+        prototype: HTMLLoadingSpinnerElement;
+        new (): HTMLLoadingSpinnerElement;
+    };
+    interface HTMLMyBackdropElement extends Components.MyBackdrop, HTMLStencilElement {
+    }
+    var HTMLMyBackdropElement: {
+        prototype: HTMLMyBackdropElement;
+        new (): HTMLMyBackdropElement;
+    };
+    interface HTMLMyModalElement extends Components.MyModal, HTMLStencilElement {
+    }
+    var HTMLMyModalElement: {
+        prototype: HTMLMyModalElement;
+        new (): HTMLMyModalElement;
+    };
     interface HTMLElementTagNameMap {
         "app-home": HTMLAppHomeElement;
         "app-profile": HTMLAppProfileElement;
         "app-root": HTMLAppRootElement;
+        "loading-spinner": HTMLLoadingSpinnerElement;
+        "my-backdrop": HTMLMyBackdropElement;
+        "my-modal": HTMLMyModalElement;
     }
 }
 declare namespace LocalJSX {
@@ -48,10 +78,21 @@ declare namespace LocalJSX {
     }
     interface AppRoot {
     }
+    interface LoadingSpinner {
+    }
+    interface MyBackdrop {
+    }
+    interface MyModal {
+        "content"?: string;
+        "head"?: string;
+    }
     interface IntrinsicElements {
         "app-home": AppHome;
         "app-profile": AppProfile;
         "app-root": AppRoot;
+        "loading-spinner": LoadingSpinner;
+        "my-backdrop": MyBackdrop;
+        "my-modal": MyModal;
     }
 }
 export { LocalJSX as JSX };
@@ -61,6 +102,9 @@ declare module "@stencil/core" {
             "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
             "app-profile": LocalJSX.AppProfile & JSXBase.HTMLAttributes<HTMLAppProfileElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
+            "loading-spinner": LocalJSX.LoadingSpinner & JSXBase.HTMLAttributes<HTMLLoadingSpinnerElement>;
+            "my-backdrop": LocalJSX.MyBackdrop & JSXBase.HTMLAttributes<HTMLMyBackdropElement>;
+            "my-modal": LocalJSX.MyModal & JSXBase.HTMLAttributes<HTMLMyModalElement>;
         }
     }
 }
