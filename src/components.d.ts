@@ -20,7 +20,12 @@ export namespace Components {
     }
     interface MyModal {
         "content": string;
-        "head": string;
+        "headline": string;
+        "open": () => Promise<void>;
+    }
+    interface MyModalBundle {
+        "content": string;
+        "headline": string;
         "open": () => Promise<void>;
     }
 }
@@ -61,6 +66,12 @@ declare global {
         prototype: HTMLMyModalElement;
         new (): HTMLMyModalElement;
     };
+    interface HTMLMyModalBundleElement extends Components.MyModalBundle, HTMLStencilElement {
+    }
+    var HTMLMyModalBundleElement: {
+        prototype: HTMLMyModalBundleElement;
+        new (): HTMLMyModalBundleElement;
+    };
     interface HTMLElementTagNameMap {
         "app-home": HTMLAppHomeElement;
         "app-profile": HTMLAppProfileElement;
@@ -68,6 +79,7 @@ declare global {
         "loading-spinner": HTMLLoadingSpinnerElement;
         "my-backdrop": HTMLMyBackdropElement;
         "my-modal": HTMLMyModalElement;
+        "my-modal-bundle": HTMLMyModalBundleElement;
     }
 }
 declare namespace LocalJSX {
@@ -84,7 +96,12 @@ declare namespace LocalJSX {
     }
     interface MyModal {
         "content"?: string;
-        "head"?: string;
+        "headline"?: string;
+        "onClose"?: (event: CustomEvent<any>) => void;
+    }
+    interface MyModalBundle {
+        "content"?: string;
+        "headline"?: string;
     }
     interface IntrinsicElements {
         "app-home": AppHome;
@@ -93,6 +110,7 @@ declare namespace LocalJSX {
         "loading-spinner": LoadingSpinner;
         "my-backdrop": MyBackdrop;
         "my-modal": MyModal;
+        "my-modal-bundle": MyModalBundle;
     }
 }
 export { LocalJSX as JSX };
@@ -105,6 +123,7 @@ declare module "@stencil/core" {
             "loading-spinner": LocalJSX.LoadingSpinner & JSXBase.HTMLAttributes<HTMLLoadingSpinnerElement>;
             "my-backdrop": LocalJSX.MyBackdrop & JSXBase.HTMLAttributes<HTMLMyBackdropElement>;
             "my-modal": LocalJSX.MyModal & JSXBase.HTMLAttributes<HTMLMyModalElement>;
+            "my-modal-bundle": LocalJSX.MyModalBundle & JSXBase.HTMLAttributes<HTMLMyModalBundleElement>;
         }
     }
 }

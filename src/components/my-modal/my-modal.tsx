@@ -1,4 +1,13 @@
-import { Component, Prop, Method, Element, h } from '@stencil/core';
+import { 
+  Component, 
+  Prop, 
+  Method, 
+  Element, 
+  h, 
+  State, 
+  Event, 
+  EventEmitter
+} from '@stencil/core';
 
 @Component({
   tag: 'my-modal',
@@ -6,23 +15,46 @@ import { Component, Prop, Method, Element, h } from '@stencil/core';
 })
 export class MyModal {
 
+  buttons = ['Okay', 'Cancel'];
+
 @Element() modalEl: HTMLElement;
 
-@Prop() head: string;
+@Prop() headline: string;
 @Prop() content: string; 
+
+@State() showOptions = false;
+
+@Event() close: EventEmitter;
 
 @Method()
 async open() {
   this.modalEl.style.display = 'block';
 };
 
+closeModalHandler() {
+  this.showOptions = false; 
+  this.close.emit();
+}
+
+showOptionsHandler() {
+  this.showOptions = true;
+}
+
   render() {
+    let options = null;
+    if(this.showOptions) {
+      options = (this.buttons.map(btn => (
+        <button onClick={this.closeModalHandler.bind(this)}>{btn}</button>
+      )));
+    }
     return (
       <div>
-        <h1>{this.head}</h1>
+        <h1>{this.headline}</h1>
         <p>{this.content}</p>
         <hr/>
-        <button class="btn">Show Options</button>
+        <button onClick={this.showOptionsHandler.bind(this)}>Show Options</button>
+        <hr/>
+        {options}
       </div>
       
 
